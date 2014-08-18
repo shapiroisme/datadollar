@@ -26,7 +26,7 @@ Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.
 Notes
 -----
 
-See `doc/readme-qt.rst` for instructions on building Datadollar-Qt, the
+See `doc/readme-qt.rst` for instructions on building datadollar-Qt, the
 graphical user interface.
 
 Tested on OS X 10.5 through 10.8 on Intel processors only. PPC is not
@@ -76,8 +76,8 @@ Installing the dependencies using MacPorts is very straightforward.
 
 1. Clone the github tree to get the source code and go into the directory.
 
-        git clone git@github.com:Datadollar-project/Datadollar.git Datadollar
-        cd Datadollar
+        git clone git@github.com:datadollar-project/datadollar.git datadollar
+        cd datadollar
 
 2.  Build litecoind:
 
@@ -111,8 +111,8 @@ Rerunning "openssl version" should now return the correct version.
 
 1. Clone the github tree to get the source code and go into the directory.
 
-        git clone https://github.com/Datadollar-project/Datadollar.git
-        cd Datadollar
+        git clone https://github.com/datadollar-project/datadollar.git
+        cd datadollar
 
 2.  Modify source in order to pick up the `openssl` library.
 
@@ -134,7 +134,7 @@ Rerunning "openssl version" should now return the correct version.
 Creating a release build
 ------------------------
 
-A litecoind binary is not included in the Datadollar-Qt.app bundle. You can ignore
+A litecoind binary is not included in the datadollar-Qt.app bundle. You can ignore
 this section if you are building `litecoind` for your own use.
 
 If you are building `litecond` for others, your build machine should be set up
@@ -156,10 +156,10 @@ As of December 2012, the `boost` port does not obey `macosx_deployment_target`.
 Download `http://gavinandresen-bitcoin.s3.amazonaws.com/boost_macports_fix.zip`
 for a fix. Some ports also seem to obey either `build_arch` or
 `macosx_deployment_target`, but not both at the same time. For example, building
-on an OS X 10.6 64-bit machine fails. Official release builds of Datadollar-Qt are
+on an OS X 10.6 64-bit machine fails. Official release builds of datadollar-Qt are
 compiled on an OS X 10.6 32-bit machine to workaround that problem.
 
-Once dependencies are compiled, creating `Datadollar-Qt.app` is easy:
+Once dependencies are compiled, creating `datadollar-Qt.app` is easy:
 
     make -f Makefile.osx RELEASE=1
 
@@ -172,8 +172,8 @@ directory. We have to first create the RPC configuration file, though.
 Run `./litecoind` to get the filename where it should be put, or just try these
 commands:
 
-    echo -e "rpcuser=litecoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Datadollar/Datadollar.conf"
-    chmod 600 "/Users/${USER}/Library/Application Support/Datadollar/Datadollar.conf"
+    echo -e "rpcuser=litecoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/datadollar/datadollar.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/datadollar/datadollar.conf"
 
 When next you run it, it will start downloading the blockchain, but it won't
 output anything while it's doing this. This process may take several hours.
@@ -181,5 +181,5 @@ output anything while it's doing this. This process may take several hours.
 Other commands:
 
     ./litecoind --help  # for a list of command-line options.
-    ./litecoind -daemon # to start the Datadollar daemon.
+    ./litecoind -daemon # to start the datadollar daemon.
     ./litecoind help    # When the daemon is running, to get a list of RPC commands
