@@ -2778,7 +2778,7 @@ bool InitBlockIndex() {
 
     algorithm: scrypt
     merkle hash: 89b8b7c2896921fb259137c01ac1452cbd92f3026006d52a962201d877523904
-    pszTimestamp: datadollar 11 Aug 2014
+    pszTimestamp: Datadollar 11 Aug 2014
     pubkey: 040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9
     time: 1407757651
     bits: 0x1e0ffff0
@@ -2787,7 +2787,7 @@ bool InitBlockIndex() {
         block.nNonce   = 2084524493; NonceForGeneration=385937755;
         // Genesis block */
 
-        const char* pszTimestamp = "datadollar 11 Aug 2014";
+        const char* pszTimestamp = "Datadollar 11 Aug 2014";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
