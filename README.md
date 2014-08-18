@@ -1,4 +1,4 @@
-Datadollar - a fork of Litecoin, where total money supply equals World GDP.
+datadollar - a fork of Litecoin, where total money supply equals World GDP.
 ===================
 
 We believe that one of the problems that existent cryptocurrencies face is the absence of economic component in such systems, which means that they resemble more a payment system than a currency itself. In particular, the emission of BitCoin cryptocurrency is presented as a static asymptotic function that imitates deflation economy and the number of coins is limited and constitutes an integer.
