@@ -110,9 +110,41 @@ static std::string Translate(const char* psz)
 static void handleRunawayException(std::exception *e)
 {
     PrintExceptionContinue(e, "Runaway exception");
-    QMessageBox::critical(0, "Runaway exception", BitcoinGUI::tr("A fatal error occurred. Litecoin can no longer continue safely and will quit.") + QString("\n\n") + QString::fromStdString(strMiscWarning));
+    QMessageBox::critical(0, "Runaway exception", BitcoinGUI::tr("A fatal error occurred. Datadollar can no longer continue safely and will quit.") + QString("\n\n") + QString::fromStdString(strMiscWarning));
     exit(1);
 }
+
+
+#include <economic.h>
+bool GetEconomicData()
+{
+    economic* eco = new economic();
+    eco->GetEconomicData();
+
+    while(!eco->DataLoaded)
+    {
+        qApp->processEvents(QEventLoop::AllEvents);
+    }
+
+    bool result = true;
+
+    if(eco->LoadError)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Can't connect to server.");
+        msgBox.setInformativeText("Try again?");
+        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+        int ret = msgBox.exec();
+
+        if(ret == QMessageBox::Ok)
+            result = GetEconomicData();
+        else
+            result = false;
+    }
+    return result;
+}
+
 
 #ifndef BITCOIN_QT_TEST
 int main(int argc, char *argv[])
@@ -146,7 +178,7 @@ int main(int argc, char *argv[])
     {
         // This message can not be translated, as translation is not initialized yet
         // (which not yet possible because lang=XX can be overridden in bitcoin.conf in the data directory)
-        QMessageBox::critical(0, "Litecoin",
+        QMessageBox::critical(0, "Datadollar",
                               QString("Error: Specified data directory \"%1\" does not exist.").arg(QString::fromStdString(mapArgs["-datadir"])));
         return 1;
     }
@@ -154,12 +186,12 @@ int main(int argc, char *argv[])
 
     // Application identification (must be set before OptionsModel is initialized,
     // as it is used to locate QSettings)
-    QApplication::setOrganizationName("Litecoin");
-    QApplication::setOrganizationDomain("litecoin.org");
+    QApplication::setOrganizationName("Datadollar");
+    QApplication::setOrganizationDomain("Datadollar.org");
     if(GetBoolArg("-testnet")) // Separate UI settings for testnet
-        QApplication::setApplicationName("Litecoin-Qt-testnet");
+        QApplication::setApplicationName("Datadollar-Qt-testnet");
     else
-        QApplication::setApplicationName("Litecoin-Qt");
+        QApplication::setApplicationName("Datadollar-Qt");
 
     // ... then GUI settings:
     OptionsModel optionsModel;
@@ -223,6 +255,14 @@ int main(int argc, char *argv[])
 
     app.processEvents();
     app.setQuitOnLastWindowClosed(false);
+
+
+    if(!GetEconomicData())
+    {
+        return 0;
+    }
+
+
 
     try
     {

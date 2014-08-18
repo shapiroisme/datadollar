@@ -179,7 +179,7 @@ bool AppInit(int argc, char* argv[])
         if (mapArgs.count("-?") || mapArgs.count("--help"))
         {
             // First part of help message is specific to bitcoind / RPC client
-            std::string strUsage = _("Litecoin version") + " " + FormatFullVersion() + "\n\n" +
+            std::string strUsage = _("Datadollar version") + " " + FormatFullVersion() + "\n\n" +
                 _("Usage:") + "\n" +
                   "  litecoind [options]                     " + "\n" +
                   "  litecoind [options] <command> [params]  " + _("Send command to -server or litecoind") + "\n" +
@@ -194,7 +194,7 @@ bool AppInit(int argc, char* argv[])
 
         // Command-line RPC
         for (int i = 1; i < argc; i++)
-            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "litecoin:"))
+            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "Datadollar:"))
                 fCommandLine = true;
 
         if (fCommandLine)
@@ -297,7 +297,7 @@ std::string HelpMessage()
 {
     string strUsage = _("Options:") + "\n" +
         "  -?                     " + _("This help message") + "\n" +
-        "  -conf=<file>           " + _("Specify configuration file (default: litecoin.conf)") + "\n" +
+        "  -conf=<file>           " + _("Specify configuration file (default: Datadollar.conf)") + "\n" +
         "  -pid=<file>            " + _("Specify pid file (default: litecoind.pid)") + "\n" +
         "  -gen                   " + _("Generate coins (default: 0)") + "\n" +
         "  -datadir=<dir>         " + _("Specify data directory") + "\n" +
@@ -307,7 +307,7 @@ std::string HelpMessage()
         "  -socks=<n>             " + _("Select the version of socks proxy to use (4-5, default: 5)") + "\n" +
         "  -tor=<ip:port>         " + _("Use proxy to reach tor hidden services (default: same as -proxy)") + "\n"
         "  -dns                   " + _("Allow DNS lookups for -addnode, -seednode and -connect") + "\n" +
-        "  -port=<port>           " + _("Listen for connections on <port> (default: 9333 or testnet: 19333)") + "\n" +
+        "  -port=<port>           " + _("Listen for connections on <port> (default: 9343 or testnet: 19343)") + "\n" +
         "  -maxconnections=<n>    " + _("Maintain at most <n> connections to peers (default: 125)") + "\n" +
         "  -addnode=<ip>          " + _("Add a node to connect to and attempt to keep the connection open") + "\n" +
         "  -connect=<ip>          " + _("Connect only to the specified node(s)") + "\n" +
@@ -350,7 +350,7 @@ std::string HelpMessage()
 #endif
         "  -rpcuser=<user>        " + _("Username for JSON-RPC connections") + "\n" +
         "  -rpcpassword=<pw>      " + _("Password for JSON-RPC connections") + "\n" +
-        "  -rpcport=<port>        " + _("Listen for JSON-RPC connections on <port> (default: 9332 or testnet: 19332)") + "\n" +
+        "  -rpcport=<port>        " + _("Listen for JSON-RPC connections on <port> (default: 9432 or testnet: 19432)") + "\n" +
         "  -rpcallowip=<ip>       " + _("Allow JSON-RPC connections from specified IP address") + "\n" +
 #ifndef QT_GUI
         "  -rpcconnect=<ip>       " + _("Send commands to node running on <ip> (default: 127.0.0.1)") + "\n" +
@@ -376,7 +376,7 @@ std::string HelpMessage()
         "  -blockmaxsize=<n>      "   + _("Set maximum block size in bytes (default: 250000)") + "\n" +
         "  -blockprioritysize=<n> "   + _("Set maximum size of high-priority/low-fee transactions in bytes (default: 27000)") + "\n" +
 
-        "\n" + _("SSL options: (see the Litecoin Wiki for SSL setup instructions)") + "\n" +
+        "\n" + _("SSL options: (see the Datadollar Wiki for SSL setup instructions)") + "\n" +
         "  -rpcssl                                  " + _("Use OpenSSL (https) for JSON-RPC connections") + "\n" +
         "  -rpcsslcertificatechainfile=<file.cert>  " + _("Server certificate file (default: server.cert)") + "\n" +
         "  -rpcsslprivatekeyfile=<file.pem>         " + _("Server private key (default: server.pem)") + "\n" +
@@ -646,12 +646,12 @@ bool AppInit2(boost::thread_group& threadGroup)
     if (file) fclose(file);
     static boost::interprocess::file_lock lock(pathLockFile.string().c_str());
     if (!lock.try_lock())
-        return InitError(strprintf(_("Cannot obtain a lock on data directory %s. Litecoin is probably already running."), strDataDir.c_str()));
+        return InitError(strprintf(_("Cannot obtain a lock on data directory %s. Datadollar is probably already running."), strDataDir.c_str()));
 
     if (GetBoolArg("-shrinkdebugfile", !fDebug))
         ShrinkDebugFile();
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    printf("Litecoin version %s (%s)\n", FormatFullVersion().c_str(), CLIENT_DATE.c_str());
+    printf("Datadollar version %s (%s)\n", FormatFullVersion().c_str(), CLIENT_DATE.c_str());
     printf("Using OpenSSL version %s\n", SSLeay_version(SSLEAY_VERSION));
     if (!fLogTimestamps)
         printf("Startup time: %s\n", DateTimeStrFormat("%Y-%m-%d %H:%M:%S", GetTime()).c_str());
@@ -661,7 +661,7 @@ bool AppInit2(boost::thread_group& threadGroup)
     std::ostringstream strErrors;
 
     if (fDaemon)
-        fprintf(stdout, "Litecoin server starting\n");
+        fprintf(stdout, "Datadollar server starting\n");
 
     if (nScriptCheckThreads) {
         printf("Using %u threads for script verification\n", nScriptCheckThreads);
@@ -678,7 +678,7 @@ bool AppInit2(boost::thread_group& threadGroup)
     // ********************************************************* Step 5: verify wallet database integrity
 
     if (!fDisableWallet) {
-        uiInterface.InitMessage(_("Verifying wallet..."));
+        //uiInterface.InitMessage(_("Verifying wallet..."));
 
         if (!bitdb.Open(GetDataDir()))
         {
@@ -869,7 +869,7 @@ bool AppInit2(boost::thread_group& threadGroup)
         bool fReset = fReindex;
         std::string strLoadError;
 
-        uiInterface.InitMessage(_("Loading block index..."));
+        //uiInterface.InitMessage(_("Loading block index..."));
 
         nStart = GetTimeMillis();
         do {
@@ -908,7 +908,7 @@ bool AppInit2(boost::thread_group& threadGroup)
                     break;
                 }
 
-                uiInterface.InitMessage(_("Verifying blocks..."));
+                //uiInterface.InitMessage(_("Verifying blocks..."));
                 if (!VerifyDB(GetArg("-checklevel", 3),
                               GetArg( "-checkblocks", 288))) {
                     strLoadError = _("Corrupted block database detected");
@@ -985,7 +985,7 @@ bool AppInit2(boost::thread_group& threadGroup)
         printf("Wallet disabled!\n");
         pwalletMain = NULL;
     } else {
-        uiInterface.InitMessage(_("Loading wallet..."));
+        //uiInterface.InitMessage(_("Loading wallet..."));
 
         nStart = GetTimeMillis();
         bool fFirstRun = true;
@@ -1002,10 +1002,10 @@ bool AppInit2(boost::thread_group& threadGroup)
                 InitWarning(msg);
             }
             else if (nLoadWalletRet == DB_TOO_NEW)
-                strErrors << _("Error loading wallet.dat: Wallet requires newer version of Litecoin") << "\n";
+                strErrors << _("Error loading wallet.dat: Wallet requires newer version of Datadollar") << "\n";
             else if (nLoadWalletRet == DB_NEED_REWRITE)
             {
-                strErrors << _("Wallet needed to be rewritten: restart Litecoin to complete") << "\n";
+                strErrors << _("Wallet needed to be rewritten: restart Datadollar to complete") << "\n";
                 printf("%s", strErrors.str().c_str());
                 return InitError(strErrors.str());
             }
@@ -1063,7 +1063,7 @@ bool AppInit2(boost::thread_group& threadGroup)
         }
         if (pindexBest && pindexBest != pindexRescan)
         {
-            uiInterface.InitMessage(_("Rescanning..."));
+            //uiInterface.InitMessage(_("Rescanning..."));
             printf("Rescanning last %i blocks (from block %i)...\n", pindexBest->nHeight - pindexRescan->nHeight, pindexRescan->nHeight);
             nStart = GetTimeMillis();
             pwalletMain->ScanForWalletTransactions(pindexRescan, true);
@@ -1090,7 +1090,7 @@ bool AppInit2(boost::thread_group& threadGroup)
 
     // ********************************************************* Step 10: load peers
 
-    uiInterface.InitMessage(_("Loading addresses..."));
+    //uiInterface.InitMessage(_("Loading addresses..."));
 
     nStart = GetTimeMillis();
 
@@ -1133,7 +1133,7 @@ bool AppInit2(boost::thread_group& threadGroup)
 
     // ********************************************************* Step 12: finished
 
-    uiInterface.InitMessage(_("Done loading"));
+    //uiInterface.InitMessage(_("Done loading"));
 
     if (pwalletMain) {
         // Add wallet transactions that aren't already in a block to mapTransactions

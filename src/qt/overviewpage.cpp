@@ -95,6 +95,8 @@ public:
 };
 #include "overviewpage.moc"
 
+#include "main.h"
+
 OverviewPage::OverviewPage(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::OverviewPage),
@@ -119,6 +121,8 @@ OverviewPage::OverviewPage(QWidget *parent) :
     // init "out of sync" warning labels
     ui->labelWalletStatus->setText("(" + tr("out of sync") + ")");
     ui->labelTransactionsStatus->setText("(" + tr("out of sync") + ")");
+
+    ui->GDPS_label->setText("Number of coins: " + QString::number(MAX_MONEY));
 
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);

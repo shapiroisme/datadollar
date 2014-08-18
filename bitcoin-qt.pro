@@ -1,9 +1,9 @@
 TEMPLATE = app
-TARGET = litecoin-qt
-macx:TARGET = "Litecoin-Qt"
+TARGET = Datadollar-qt
+macx:TARGET = "Datadollar-Qt"
 VERSION = 0.8.7.2
 INCLUDEPATH += src src/json src/qt
-QT += core gui network
+QT += core gui network script
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
 CONFIG += no_include_pwd
@@ -219,7 +219,8 @@ HEADERS += src/qt/bitcoingui.h \
     src/threadsafety.h \
     src/limitedmap.h \
     src/qt/macnotificationhandler.h \
-    src/qt/splashscreen.h
+    src/qt/splashscreen.h \
+    src/economic.h
 
 SOURCES += src/qt/bitcoin.cpp \
     src/qt/bitcoingui.cpp \
@@ -290,7 +291,8 @@ SOURCES += src/qt/bitcoin.cpp \
     src/noui.cpp \
     src/leveldb.cpp \
     src/txdb.cpp \
-    src/qt/splashscreen.cpp
+    src/qt/splashscreen.cpp \
+    src/economic.cpp
 
 RESOURCES += src/qt/bitcoin.qrc
 
@@ -319,7 +321,7 @@ SOURCES += src/qt/test/test_main.cpp \
 HEADERS += src/qt/test/uritests.h
 DEPENDPATH += src/qt/test
 QT += testlib
-TARGET = litecoin-qt_test
+TARGET = Datadollar-qt_test
 DEFINES += BITCOIN_QT_TEST
   macx: CONFIG -= app_bundle
 }
@@ -419,7 +421,7 @@ macx:HEADERS += src/qt/macdockiconhandler.h src/qt/macnotificationhandler.h
 macx:OBJECTIVE_SOURCES += src/qt/macdockiconhandler.mm src/qt/macnotificationhandler.mm
 macx:LIBS += -framework Foundation -framework ApplicationServices -framework AppKit -framework CoreServices
 macx:DEFINES += MAC_OSX MSG_NOSIGNAL=0
-macx:ICON = src/qt/res/icons/litecoin.icns
+macx:ICON = src/qt/res/icons/Datadollar.icns
 macx:QMAKE_CFLAGS_THREAD += -pthread
 macx:QMAKE_LFLAGS_THREAD += -pthread
 macx:QMAKE_CXXFLAGS_THREAD += -pthread
