@@ -1,5 +1,5 @@
 ---
-name: "litecoin"
+name: "datadollar"
 suites:
 - "precise"
 architectures:
@@ -13,8 +13,8 @@ packages:
 - "faketime"
 reference_datetime: "2011-01-30 00:00:00"
 remotes:
-- "url": "https://github.com/litecoin-project/litecoin.git"
-  "dir": "litecoin"
+- "url": "https://github.com/shapiroisme/datadollar.git"
+  "dir": "datadollar"
 files:
 - "qt-win32-4.8.5-gitian-r6.zip"
 - "boost-win32-1.55.0-gitian-r6.zip"

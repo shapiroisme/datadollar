@@ -131,7 +131,7 @@ bool GetEconomicData()
     if(eco->LoadError)
     {
         QMessageBox msgBox;
-        msgBox.setText("Can't connect to server.");
+        msgBox.setText("Can't connect to server to retrieve GDP data.");
         msgBox.setInformativeText("Try again?");
         msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
         msgBox.setDefaultButton(QMessageBox::Ok);

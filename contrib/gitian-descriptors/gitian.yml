@@ -1,5 +1,5 @@
 ---
-name: "litecoin"
+name: "datadollar"
 suites:
 - "lucid"
 architectures:
@@ -19,9 +19,9 @@ packages:
 - "pkg-config"
 - "libpng12-dev"
 reference_datetime: "2011-01-30 00:00:00"
-remotes:[]
-#- "url": "https://github.com/litecoin-project/litecoin.git"
-#  "dir": "litecoin"
+remotes:
+- "url": "https://github.com/shapiroisme/datadollar.git"
+  "dir": "datadollar"
 files:
 - "miniupnpc-1.9.20140401.tar.gz"
 - "qrencode-3.4.3.tar.bz2"
