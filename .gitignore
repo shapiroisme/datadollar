@@ -1,6 +1,6 @@
 src/*.exe
-src/litecoin
-src/litecoind
+src/datadollar
+src/datadollard
 src/test_litecoin
 .*.swp
 *.*~*
@@ -9,13 +9,13 @@ src/test_litecoin
 *.orig
 *.o
 *.patch
-.litecoin
+.datadollar
 
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-litecoin-qt
-Litecoin-Qt.app
+datadollar-qt
+datadollar-Qt.app
 
 # Unit-tests
 Makefile.test
