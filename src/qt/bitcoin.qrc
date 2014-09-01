@@ -1,4 +1,4 @@
-<!DOCTYPE RCC><RCC version="1.0">
+<RCC>
     <qresource prefix="/icons">
         <file alias="bitcoin">res/icons/dd.png</file>
         <file alias="address-book">res/icons/address-book.png</file>
@@ -44,7 +44,7 @@
     <qresource prefix="/images">
         <file alias="about">res/images/about.png</file>
         <file alias="splash_testnet">res/images/splash_testnet.png</file>
-        <file alias="splash">res/images/Без-имени-1 (2).png</file>
+        <file alias="splash">res/images/splashc.png</file>
     </qresource>
     <qresource prefix="/movies">
         <file alias="update_spinner">res/movies/update_spinner.mng</file>

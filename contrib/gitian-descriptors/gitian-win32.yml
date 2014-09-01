@@ -62,4 +62,4 @@ script: |
   cp ../../release/* ../release/
   cp ../../src/*.exe .
   makensis ../share/setup.nsi
-  cp ../share/datadollar-*-win32-setup.exe $OUTDIR/
+  cp ../share/Datadollar-*-win32-setup.exe $OUTDIR/
