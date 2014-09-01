@@ -3,14 +3,19 @@
 
 #include "main.h"
 
-#include <QNetworkAccessManager>
-#include <QUrl>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QScriptValue>
-#include <QScriptEngine>
+#include "boost/asio.hpp"
 #include <QObject>
-#include <QDebug>
+
+#include <string>
+#include <list>
+#include <map>
+
+#include "json/json_spirit_reader_template.h"
+#include "json/json_spirit_writer_template.h"
+#include "json/json_spirit_utils.h"
+
+using namespace std;
+using namespace json_spirit;
 
 class economic: public QObject
 {
@@ -20,13 +25,6 @@ class economic: public QObject
     void GetEconomicData();
     bool DataLoaded;
     bool LoadError;
-   public slots:
-    void finishedSlot(QNetworkReply* reply);
-   private:
-    QNetworkAccessManager* nam;
-
-
-
 };
 
 #endif // ECONOMIC_H
